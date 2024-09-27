@@ -1,0 +1,23 @@
+name: "Lint PR"
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+
+permissions:
+  pull-requests: read
+
+jobs:
+  main:
+    name: Validate PR title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: taskmedia/action-conventional-commits@v1.1.18
+        with:
+          # token to access GitHub API to receive PR commits
+          # Default: ${{ github.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
