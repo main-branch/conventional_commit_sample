@@ -1,4 +1,4 @@
-name: "Lint PR"
+name: Conventional Commits
 
 on:
   pull_request_target:
@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   main:
-    name: Validate PR title
+    name: Validate Commits
     runs-on: ubuntu-latest
     steps:
       - uses: taskmedia/action-conventional-commits@v1.1.18
