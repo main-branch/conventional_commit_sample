@@ -18,6 +18,7 @@ jobs:
     steps:
       - uses: taskmedia/action-conventional-commits@v1.1.18
         with:
-          # token to access GitHub API to receive PR commits
-          # Default: ${{ github.token }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          types: "feat|fix|chore|revert"
+          skip_merge: true
+          skip_revert: true
