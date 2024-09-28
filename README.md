@@ -1,4 +1,4 @@
-# test
+# conventional_commit_test
 
 A repository for testing conventional commit actions
 
