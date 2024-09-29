@@ -1,24 +1,26 @@
 name: Conventional Commits
 
-on:
-  pull_request_target:
-    types:
-      - opened
-      - edited
-      - synchronize
-      - reopened
+# Modeled after https://github.com/oss-review-toolkit/ort
 
-permissions:
-  pull-requests: read
+on:
+  pull_request:
+    branches:
+      - main
+
+  push:
+    branches:
+      - main
 
 jobs:
-  main:
-    name: Validate Commits
+  commit-lint:
+    name: Validate commits
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: taskmedia/action-conventional-commits@v1.1.18
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          types: "feat|fix|chore|revert"
-          skip_merge: true
-          skip_revert: true
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Check Commit Messages
+        uses: wagoid/commitlint-github-action@v6
+        with: { configFile: .commitlintrc.yml }
