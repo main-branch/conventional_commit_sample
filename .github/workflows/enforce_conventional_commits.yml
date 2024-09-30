@@ -1,24 +1,19 @@
 name: Conventional Commits
 
-# Modeled after https://github.com/oss-review-toolkit/ort
-
 on:
   pull_request:
     branches:
       - main
 
-  push:
-    branches:
-      - main
-
 jobs:
   commit-lint:
-    name: Validate commits
+    name: Verify Conventional Commits
 
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with: { fetch-depth: 0 }
 
       - name: Check Commit Messages
