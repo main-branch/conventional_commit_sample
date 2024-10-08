@@ -12,6 +12,7 @@ commits. See [Conventional Commits
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Step-by-step](#step-by-step)
+* [The Case Against Conventional Commits](#the-case-against-conventional-commits)
 
 ## Why Conventional Commits?
 
@@ -98,3 +99,80 @@ Ensure that Node.js is installed and available from the command line.
    ```
 
    This will install the required dependencies and enable the commit-msg hook.
+
+## The Case Against Conventional Commits
+
+While **Conventional Commits** are widely adopted for their structure and clarity,
+there are some criticisms associated with their use.
+
+1. Increased Burden on Developers
+
+   * **Learning Curve**: For teams unfamiliar with the Conventional Commits
+     specification, there’s a learning curve. Developers must understand and
+     consistently apply the commit message structure (e.g., using types like `feat`,
+     `fix`, `chore`).
+   * **Time-Consuming**: Writing precise, well-structured commit messages can be
+     time-consuming, especially when developers are focused on solving technical
+     problems and might consider the format as a distraction.
+
+2. Potential for Overhead in Small Teams
+
+   * **Overkill for Simple Projects**: In smaller projects or teams, adhering strictly
+     to Conventional Commits may feel unnecessary or overly formal. Some developers
+     argue that this level of structure isn’t needed unless the project is very large or
+     has many contributors.
+   * **Non-Trivial Tooling**: Implementing Conventional Commits often requires
+     additional tooling (e.g., commit linting, changelog generation). This can add
+     complexity to the CI/CD pipeline, which may not be justified for small-scale or
+     personal projects.
+
+3. Reduced Flexibility
+
+   * **Rigid Structure**: The predefined types (`feat`, `fix`, etc.) may not cover all
+     possible use cases or workflows. This rigidity can feel limiting to developers who
+     are used to a more freeform approach to writing commit messages.
+   * **Imprecise Classifications**: Sometimes, developers struggle to classify their
+     commits accurately. For example, determining whether a commit should be a `fix`,
+     `refactor`, or `chore` can be subjective and inconsistent across a team.
+
+4. Focus on Syntax over Meaning
+
+   * **Syntax Over Substance**: Critics argue that developers might prioritize adhering
+     to the correct commit format rather than focusing on writing a meaningful commit
+     message. This can lead to superficial messages that follow the rules but lack
+     clarity or detail.
+   * **Superficial Changelogs**: While changelogs generated from conventional commits
+     are structured, they might not provide sufficient detail for users. A changelog
+     full of `feat: added X` and `fix: resolved Y` entries might lack meaningful
+     explanations or context.
+
+5. Enforcing Conventional Commits Can Be Disruptive
+
+   * **Hinders Development Flow**: Developers who are used to committing frequently and
+     quickly, especially in fast-paced environments, may find the process of crafting
+     well-structured commit messages disruptive to their workflow.
+   * **Merge Commit Challenges**: In some workflows, particularly when using pull
+     requests or merge commits, it can be difficult to maintain consistency with
+     Conventional Commits. Developers may need to reword or squash commits to ensure
+     they follow the required format, adding extra steps to the workflow.
+
+6. Not Always a Perfect Fit for Non-SemVer Projects
+
+   * **SemVer Dependency**: Conventional Commits are closely tied to Semantic Versioning
+     (SemVer). Projects that don’t follow SemVer (e.g., libraries or services with
+     continuous deployment) may find the specification less useful or irrelevant, making
+     the overhead less justified.
+
+7. Discourages Granular Commits
+
+   * **Encourages Batching Changes**: To avoid creating too many “small” commit
+     messages, some developers may batch unrelated changes into a single commit to
+     simplify the commit process. This goes against the best practice of making
+     granular, single-purpose commits.
+
+8. Limited Adaptation for Non-Code Changes
+
+   * **Non-Code Commit Ambiguity**: For non-code contributions, such as documentation or
+     configuration changes, the commit types can feel awkward. While types like `docs`
+     or `chore` exist, they might not fully capture the intention or scope of such
+     changes, leading to confusion.
