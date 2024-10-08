@@ -19,17 +19,25 @@ Conventional Commits provide a standardized format for commit messages that help
 automate and streamline development workflows. Adopting this practice benefits your
 project in several ways:
 
-1. **Improve Readability**: A consistent message structure makes commits easier to
+* **Improve Readability**
+
+   A consistent message structure makes commits easier to
    read and understand.
 
-2. **Automated Changelog Generation**: Commit messages can be parsed to automatically
+* **Automated Changelog Generation**
+
+   Commit messages can be parsed to automatically
    generate a changelog, useful for continuous integration and release automation.
 
-3. **Semantic Versioning Integration**: The commit structure supports semantic
+* **Semantic Versioning Integration**
+
+   The commit structure supports semantic
    versioning by including types like feat and fix, which correspond to version
    updates.
 
-4. **Enforces Good Practices**: Encourages thoughtful and informative commit
+* **Enforces Good Practices**
+
+   Encourages thoughtful and informative commit
    messages, improving collaboration and making it easier to track changes over time.
 
 By using Conventional Commits, your team can improve consistency, maintainability,
@@ -39,11 +47,15 @@ and automation in version control processes.
 
 Conventional Commits are enforced at two levels in this setup:
 
-1. **Pre-commit Hook**: A Git commit-msg hook ensures every commit message follows
+1. **Pre-commit Hook**:
+
+   A Git commit-msg hook ensures every commit message follows
    the correct format *before* it is finalized. This prevents incorrectly formatted
    commits from being made.
 
-2. **GitHub Action**: A GitHub Action checks that all commits in a pull request
+2. **GitHub Action**
+
+   A GitHub Action checks that all commits in a pull request
    adhere to Conventional Commits guidelines, ensuring consistent commit messages
    across the project.
 
@@ -69,7 +81,7 @@ Ensure that Node.js is installed and available from the command line.
    └── package.json
    ```
 
-   If your project already has one of these example files (for example, `.gitignore`
+   If your project already has one of these example files (such as `.gitignore`
    or `pacakge.json`), make sure to *merge* the contents of the example file into
    your existing file.
 
