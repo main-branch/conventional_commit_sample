@@ -22,24 +22,22 @@ project in several ways:
 
 * **Improve Readability**
 
-   A consistent message structure makes commits easier to
-   read and understand.
+   A consistent message structure makes commits easier to read and understand.
 
 * **Automated Changelog Generation**
 
-   Commit messages can be parsed to automatically
-   generate a changelog, useful for continuous integration and release automation.
+   Commit messages can be parsed to automatically generate a changelog, useful for
+   continuous integration and release automation.
 
 * **Semantic Versioning Integration**
 
-   The commit structure supports semantic
-   versioning by including types like feat and fix, which correspond to version
-   updates.
+   The commit structure supports semantic versioning by including types like feat and
+   fix, which correspond to version updates.
 
 * **Enforces Good Practices**
 
-   Encourages thoughtful and informative commit
-   messages, improving collaboration and making it easier to track changes over time.
+   Encourages thoughtful and informative commit messages, improving collaboration and
+   making it easier to track changes over time.
 
 By using Conventional Commits, your team can improve consistency, maintainability,
 and automation in version control processes.
@@ -50,15 +48,14 @@ Conventional Commits are enforced at two levels in this setup:
 
 1. **Pre-commit Hook**:
 
-   A Git commit-msg hook ensures every commit message follows
-   the correct format *before* it is finalized. This prevents incorrectly formatted
-   commits from being made.
+   A Git commit-msg hook ensures every commit message follows the correct format
+   *before* it is finalized. This prevents incorrectly formatted commits from being
+   made.
 
 2. **GitHub Action**
 
-   A GitHub Action checks that all commits in a pull request
-   adhere to Conventional Commits guidelines, ensuring consistent commit messages
-   across the project.
+   A GitHub Action checks that all commits in a pull request adhere to Conventional
+   Commits guidelines, ensuring consistent commit messages across the project.
 
 ## Getting Started
 
@@ -82,9 +79,9 @@ Ensure that Node.js is installed and available from the command line.
    └── package.json
    ```
 
-   If your project already has one of these example files (such as `.gitignore`
-   or `pacakge.json`), make sure to *merge* the contents of the example file into
-   your existing file.
+   If your project already has one of these example files (such as `.gitignore` or
+   `package.json`), make sure to *merge* the contents of the example file into your
+   existing file.
 
 2. Modify `.commitlintrc.yml` as needed for your project. For example, you might want
    to customize the allowed commit types, scopes, or disable scopes altogether. See
@@ -99,6 +96,41 @@ Ensure that Node.js is installed and available from the command line.
    ```
 
    This will install the required dependencies and enable the commit-msg hook.
+
+4. Define Branch and Merge Rules in GitHub
+
+   To enforce Conventional Commits and maintain a clean commit history, update the
+   following GitHub settings for your repository.
+
+   * **Disallow merge commits and squash merges**: Only allow rebase merges to ensure
+     all commits merged into the main branch follow the Conventional Commits format.
+
+     Navigate to **Settings > General** in your GitHub repository. In the "**Pull
+     Requests**" section:
+
+        * Uncheck "**Allow merge commits**"
+        * Uncheck "**Allow squash merging**"
+        * Check "**Allow rebase merging**"
+
+   * **Enforce commit linting checks**: Require all pull requests to pass the commit
+     linting check before merging.
+
+     Navigate to **Settings > Rules > Rulesets** and select (or create) the ruleset
+     that applies to the main branch.
+
+        * Check “**Require a pull request before merging**” and enable all related
+          options
+        * Check "**Require status checks to pass**" and add the status check for
+          "**Verify Convention Commits**" (or refer to the exact name of your commit
+          linting check as defined in your workflow file)
+
+   * **Require a linear history**: Enforce a linear history to maintain a
+     straightforward and uncluttered commit log.
+
+     Navigate to **Settings > Rules > Rulesets** and select (or create) the ruleset
+     that applies to the main branch.
+
+        * Check "**Require linear history**"
 
 ## The Case Against Conventional Commits
 
@@ -117,10 +149,10 @@ there are some criticisms associated with their use.
 
 2. Potential for Overhead in Small Teams
 
-   * **Overkill for Simple Projects**: In smaller projects or teams, adhering strictly
-     to Conventional Commits may feel unnecessary or overly formal. Some developers
-     argue that this level of structure isn’t needed unless the project is very large or
-     has many contributors.
+   * **Overkill for Simple Projects**: In smaller projects or teams, adhering
+     strictly to Conventional Commits may feel unnecessary or overly formal. Some
+     developers argue that this level of structure isn’t needed unless the project is
+     very large or has many contributors.
    * **Non-Trivial Tooling**: Implementing Conventional Commits often requires
      additional tooling (e.g., commit linting, changelog generation). This can add
      complexity to the CI/CD pipeline, which may not be justified for small-scale or
@@ -128,19 +160,19 @@ there are some criticisms associated with their use.
 
 3. Reduced Flexibility
 
-   * **Rigid Structure**: The predefined types (`feat`, `fix`, etc.) may not cover all
-     possible use cases or workflows. This rigidity can feel limiting to developers who
-     are used to a more freeform approach to writing commit messages.
+   * **Rigid Structure**: The predefined types (`feat`, `fix`, etc.) may not cover
+     all possible use cases or workflows. This rigidity can feel limiting to
+     developers who are used to a more freeform approach to writing commit messages.
    * **Imprecise Classifications**: Sometimes, developers struggle to classify their
      commits accurately. For example, determining whether a commit should be a `fix`,
      `refactor`, or `chore` can be subjective and inconsistent across a team.
 
 4. Focus on Syntax over Meaning
 
-   * **Syntax Over Substance**: Critics argue that developers might prioritize adhering
-     to the correct commit format rather than focusing on writing a meaningful commit
-     message. This can lead to superficial messages that follow the rules but lack
-     clarity or detail.
+   * **Syntax Over Substance**: Critics argue that developers might prioritize
+     adhering to the correct commit format rather than focusing on writing a
+     meaningful commit message. This can lead to superficial messages that follow the
+     rules but lack clarity or detail.
    * **Superficial Changelogs**: While changelogs generated from conventional commits
      are structured, they might not provide sufficient detail for users. A changelog
      full of `feat: added X` and `fix: resolved Y` entries might lack meaningful
@@ -148,9 +180,9 @@ there are some criticisms associated with their use.
 
 5. Enforcing Conventional Commits Can Be Disruptive
 
-   * **Hinders Development Flow**: Developers who are used to committing frequently and
-     quickly, especially in fast-paced environments, may find the process of crafting
-     well-structured commit messages disruptive to their workflow.
+   * **Hinders Development Flow**: Developers who are used to committing frequently
+     and quickly, especially in fast-paced environments, may find the process of
+     crafting well-structured commit messages disruptive to their workflow.
    * **Merge Commit Challenges**: In some workflows, particularly when using pull
      requests or merge commits, it can be difficult to maintain consistency with
      Conventional Commits. Developers may need to reword or squash commits to ensure
@@ -158,10 +190,10 @@ there are some criticisms associated with their use.
 
 6. Not Always a Perfect Fit for Non-SemVer Projects
 
-   * **SemVer Dependency**: Conventional Commits are closely tied to Semantic Versioning
-     (SemVer). Projects that don’t follow SemVer (e.g., libraries or services with
-     continuous deployment) may find the specification less useful or irrelevant, making
-     the overhead less justified.
+   * **SemVer Dependency**: Conventional Commits are closely tied to Semantic
+     Versioning (SemVer). Projects that don’t follow SemVer (e.g., libraries or
+     services with continuous deployment) may find the specification less useful or
+     irrelevant, making the overhead less justified.
 
 7. Discourages Granular Commits
 
@@ -172,7 +204,7 @@ there are some criticisms associated with their use.
 
 8. Limited Adaptation for Non-Code Changes
 
-   * **Non-Code Commit Ambiguity**: For non-code contributions, such as documentation or
-     configuration changes, the commit types can feel awkward. While types like `docs`
-     or `chore` exist, they might not fully capture the intention or scope of such
-     changes, leading to confusion.
+   * **Non-Code Commit Ambiguity**: For non-code contributions, such as documentation
+     or configuration changes, the commit types can feel awkward. While types like
+     `docs` or `chore` exist, they might not fully capture the intention or scope of
+     such changes, leading to confusion.
